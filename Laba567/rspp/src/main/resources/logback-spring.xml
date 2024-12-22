@@ -1,0 +1,28 @@
+<configuration>
+    <!-- Консольный логгер -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Логгер для пользовательского уровня TRACE -->
+    <appender name="VERBOSE_FILE" class="ch.qos.logback.core.FileAppender">
+        <file>logs/verbose.log</file>
+        <append>true</append>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Логгер для пакета приложения -->
+    <logger name="com.bronepoezd.rspp" level="TRACE" additivity="false">
+        <appender-ref ref="VERBOSE_FILE"/>
+        <appender-ref ref="CONSOLE"/>
+    </logger>
+
+    <!-- Корневой логгер -->
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+    </root>
+</configuration>
